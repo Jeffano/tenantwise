@@ -1,0 +1,14 @@
+.env
+.env.local
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.models/
+backend/evals/.cache/
+backend/evals/reports/*_latest.json
+node_modules/
+.next/
+*.tsbuildinfo
+dist/
+.DS_Store

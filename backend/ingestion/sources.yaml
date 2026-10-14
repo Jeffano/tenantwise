@@ -1,0 +1,47 @@
+# Curated corpus. Every document here is trusted, which narrows the security problem
+# to user input only. Check each site's terms of use and always link back to the source.
+#
+# type:
+#   statute  -> Ontario laws pages, split by section number (best citations)
+#   page     -> government web pages, split by headings
+#   pdf      -> PDF brochures, split by paragraphs into ~400 token windows
+# For pdf you can also download the file into ingestion/raw/ and set `file:` instead of `url:`.
+
+sources:
+  - slug: rta
+    title: Residential Tenancies Act, 2006
+    ref_prefix: "RTA"
+    type: statute
+    url: https://www.ontario.ca/laws/statute/06r17
+
+  - slug: oreg516
+    title: O. Reg. 516/06 (General regulation under the RTA)
+    ref_prefix: "O. Reg. 516/06"
+    type: statute
+    url: https://www.ontario.ca/laws/regulation/060516
+
+  - slug: rent-increases
+    title: Residential rent increases (Government of Ontario)
+    ref_prefix: "Ontario.ca rent increases"
+    type: page
+    url: https://www.ontario.ca/page/residential-rent-increases
+
+  - slug: standard-lease
+    title: Guide to Ontario's standard lease
+    ref_prefix: "Standard lease guide"
+    type: page
+    url: https://www.ontario.ca/page/guide-ontarios-standard-lease
+
+  - slug: renting-in-ontario
+    title: Renting in Ontario, your rights (Government of Ontario)
+    ref_prefix: "Renting in Ontario"
+    type: page
+    url: https://www.ontario.ca/page/renting-ontario-your-rights
+
+  # Landlord and Tenant Board brochures. Open https://tribunalsontario.ca/ltb/brochures/
+  # copy the current PDF links you want, and add them like this:
+  # - slug: ltb-brochure-maintenance
+  #   title: LTB brochure, Maintenance and repairs
+  #   ref_prefix: "LTB brochure: Maintenance"
+  #   type: pdf
+  #   url: https://tribunalsontario.ca/documents/ltb/Brochures/....pdf

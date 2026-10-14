@@ -1,0 +1,8 @@
+{
+  "retrieval_hit_rate_min": 0.85,
+  "max_hit_rate_drop": 0.03,
+  "faithfulness_min": 0.90,
+  "key_fact_coverage_min": 0.80,
+  "citation_valid_rate_min": 0.97,
+  "refusal_accuracy_min": 0.90
+}

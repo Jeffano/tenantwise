@@ -1,0 +1,11 @@
+# Runtime dependencies for the API container. Versions pinned so builds are reproducible.
+fastapi==0.142.2
+uvicorn[standard]==0.54.0
+anthropic==1.11.0
+psycopg[binary]==3.3.6
+psycopg-pool==3.3.3
+pgvector==0.5.0
+fastembed==0.8.1
+numpy==2.5.3
+pydantic-settings==2.15.0
+httpx==0.28.1

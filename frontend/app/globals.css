@@ -1,0 +1,164 @@
+/* Palette: cool paper, deep statute green, and a brass accent reserved for citations.
+   The citation markers are the one bold element; everything else stays quiet. */
+:root {
+  --paper: #f3f6f5;
+  --surface: #ffffff;
+  --ink: #15262a;
+  --muted: #55676b;
+  --rule: #d3ddda;
+  --green: #1d5a4c;
+  --green-dark: #143f36;
+  --brass: #a8740f;
+  --brass-soft: #f4e7c8;
+  --danger: #8f3410;
+  --radius-input: 10px;
+  --measure: 42rem;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 17px; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+a { color: var(--green); text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--brass);
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+.site-header, .page, .site-footer { max-width: var(--measure); margin: 0 auto; padding: 0 1.25rem; }
+
+.site-header {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+  padding-top: 1.5rem; padding-bottom: 1.5rem;
+}
+.wordmark { font-weight: 800; font-size: 1.15rem; color: var(--green-dark); text-decoration: none; letter-spacing: -0.01em; }
+.site-header nav { display: flex; gap: 1.25rem; font-size: 0.9rem; }
+.site-header nav a { color: var(--muted); }
+
+.intro h1 {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  margin: 1.5rem 0 0.75rem;
+  max-width: 20ch;
+}
+.lede { color: var(--muted); font-size: 1.05rem; max-width: 36rem; margin: 0 0 2rem; }
+
+.ask textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 1.05rem;
+  padding: 0.9rem 1rem;
+  border: 1.5px solid var(--rule);
+  border-radius: var(--radius-input);
+  background: var(--surface);
+  color: var(--ink);
+  resize: vertical;
+}
+.ask textarea:focus { border-color: var(--green); }
+.ask-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 0.6rem; }
+.hint { font-size: 0.82rem; color: var(--muted); }
+
+button {
+  font: inherit; cursor: pointer; border: none;
+}
+.ask button {
+  background: var(--green); color: #fff; font-weight: 700;
+  padding: 0.6rem 1.5rem; border-radius: 999px;
+}
+.ask button:hover:not(:disabled) { background: var(--green-dark); }
+.ask button:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.examples { margin-top: 2.25rem; }
+.examples p { color: var(--muted); margin: 0 0 0.4rem; font-size: 0.92rem; }
+.examples ul { list-style: none; padding: 0; margin: 0; }
+.examples li + li { margin-top: 0.2rem; }
+.link-button {
+  background: none; padding: 0.25rem 0; color: var(--green); text-align: left;
+  text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px;
+}
+.link-button:hover { text-decoration-color: var(--green); }
+
+.result { margin-top: 2.75rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+.asked { font-size: 1rem; font-weight: 600; color: var(--muted); margin: 0 0 1rem; }
+
+.answer {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 1.18rem;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  max-width: 38rem;
+}
+.thinking { color: var(--muted); font-style: italic; }
+
+/* The signature element: brass citation markers that read like statute references. */
+.cite-mark {
+  display: inline-block;
+  min-width: 1.35em;
+  margin: 0 0.1em;
+  padding: 0 0.3em;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.68em;
+  font-weight: 800;
+  line-height: 1.5;
+  vertical-align: 0.45em;
+  text-align: center;
+  text-decoration: none;
+  color: var(--brass);
+  background: var(--brass-soft);
+  border-radius: 4px;
+}
+.cite-mark:hover { background: var(--brass); color: #fff; }
+
+.sources { list-style: none; padding: 0; margin: 1.75rem 0 0; }
+.sources li {
+  display: grid; grid-template-columns: 2rem 1fr; gap: 0.5rem; align-items: start;
+  padding: 0.65rem 0; border-top: 1px solid var(--rule);
+}
+.sources li:target { background: var(--brass-soft); }
+.source-n { font-weight: 800; color: var(--brass); }
+.source-ref { font-weight: 700; display: block; }
+.source-path { display: block; font-size: 0.85rem; color: var(--muted); }
+
+.feedback { display: flex; align-items: center; gap: 0.6rem; margin-top: 1.5rem; font-size: 0.9rem; color: var(--muted); }
+.feedback button {
+  background: var(--surface); border: 1.5px solid var(--rule); border-radius: 999px;
+  padding: 0.25rem 0.9rem; color: var(--ink);
+}
+.feedback button:hover { border-color: var(--green); }
+
+.error { color: var(--danger); font-weight: 600; }
+
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1.25rem 2rem; margin: 0 0 2.5rem; }
+.stats div { border-top: 2px solid var(--green); padding-top: 0.5rem; }
+.stats dt { font-size: 0.88rem; color: var(--muted); }
+.stats dd { margin: 0.15rem 0 0; font-size: 1.6rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.section-title { font-size: 1.1rem; margin: 0 0 0.75rem; }
+.routes { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.routes th, .routes td { text-align: left; padding: 0.5rem 0.25rem; border-bottom: 1px solid var(--rule); }
+.routes th { font-size: 0.85rem; color: var(--muted); font-weight: 600; }
+
+.site-footer { margin-top: 4rem; padding-top: 1.5rem; padding-bottom: 2.5rem; border-top: 1px solid var(--rule); font-size: 0.85rem; color: var(--muted); }
+
+@media (max-width: 560px) {
+  html { font-size: 16px; }
+  .ask-row { flex-direction: column; align-items: stretch; }
+  .ask button { width: 100%; padding: 0.75rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; transition: none !important; }
+}
