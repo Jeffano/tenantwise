@@ -207,12 +207,15 @@ def _search_rate_limit(request: Request, limit: int = 60) -> None:
 
 
 @app.get("/api/search")
-async def search(q: str, request: Request, k: int = 6):
+async def search(q: str, request: Request, k: int = 6, mode: str = "hybrid"):
     _search_rate_limit(request)
     if not q.strip() or len(q) > 1000:
         raise HTTPException(status_code=400, detail="Query must be between 1 and 1000 characters.")
-    result = await retrieve(redact_pii(q), k=max(1, min(k, 10)))
-    return {"top_similarity": result.top_similarity,
+    if mode not in ("hybrid", "vector"):
+        raise HTTPException(status_code=400, detail="mode must be 'hybrid' or 'vector'.")
+    result = await retrieve(redact_pii(q), k=max(1, min(k, 10)), mode=mode)
+    return {"mode": mode,
+            "top_similarity": result.top_similarity,
             "in_scope": is_in_scope(result.top_similarity),
             "results": [c.to_public() for c in result.chunks]}
 
