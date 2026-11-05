@@ -38,10 +38,9 @@ sources:
     type: page
     url: https://www.ontario.ca/page/renting-ontario-your-rights
 
-  # Landlord and Tenant Board brochures. Open https://tribunalsontario.ca/ltb/brochures/
-  # copy the current PDF links you want, and add them like this:
-  # - slug: ltb-brochure-maintenance
-  #   title: LTB brochure, Maintenance and repairs
-  #   ref_prefix: "LTB brochure: Maintenance"
-  #   type: pdf
-  #   url: https://tribunalsontario.ca/documents/ltb/Brochures/....pdf
+  # Landlord and Tenant Board brochures from https://tribunalsontario.ca/ltb/brochures/
+  - slug: ltb-maintenance
+    title: LTB brochure, Maintenance and repairs
+    ref_prefix: "LTB brochure: Maintenance"
+    type: page
+    url: https://tribunalsontario.ca/documents/ltb/Brochures/Maintenance%20and%20Repairs.html

@@ -33,3 +33,16 @@ def test_headed_page():
     chunks = parse_headed_page(blocks, "Ontario.ca rent increases")
     assert [c.section_ref for c in chunks] == ["Ontario.ca rent increases: Rent increase guideline",
                                                "Ontario.ca rent increases: Exemptions"]
+
+from bs4 import BeautifulSoup
+from ingestion.ingest import statute_lines
+
+def test_section_numbers_in_their_own_tags_are_joined():
+    html = "<main>" + "".join(
+        f'<p class="section-e"><b>{n}</b> <span>(1)</span> A landlord shall do thing {n}.</p>'
+        for n in range(100, 160)
+    ) + "</main>"
+    lines = statute_lines(BeautifulSoup(html, "html.parser").find("main"))
+    chunks = parse_statute(lines, "RTA")
+    assert len(chunks) == 60
+    assert chunks[16].section_ref == "RTA s. 116"

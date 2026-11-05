@@ -41,6 +41,24 @@ def main_content(soup: BeautifulSoup):
         tag.decompose()
     return soup.find("main") or soup.find(id="content") or soup.body or soup
 
+def statute_lines(root) -> list[str]:
+    """One line per paragraph or heading, with inline tags joined by spaces.
+
+    The laws site wraps section numbers in their own tags. Splitting on every tag
+    would turn "116 (1) A landlord..." into three lines, and the parser would never
+    see a section start, so we join the text inside each block element instead.
+    """
+    lines = []
+    for el in root.find_all(["h1", "h2", "h3", "h4", "p"]):
+        if el.find_parent("p"):
+            continue
+        text = " ".join(el.get_text(" ").split())
+        if text:
+            lines.append(text)
+    # Pages without paragraph markup: fall back to splitting the raw text.
+    if len(lines) < 50:
+        lines = root.get_text("\n").splitlines()
+    return clean_lines("\n".join(lines))
 
 def parse_source(src: dict) -> list[RawChunk]:
     data = load_bytes(src)
@@ -53,7 +71,7 @@ def parse_source(src: dict) -> list[RawChunk]:
     soup = BeautifulSoup(data, "html.parser")
     root = main_content(soup)
     if kind == "statute":
-        return parse_statute(clean_lines(root.get_text("\n")), prefix)
+            return parse_statute(statute_lines(root), prefix)
     if kind == "page":
         blocks = []
         for el in root.find_all(["h2", "h3", "h4", "p", "li"]):
